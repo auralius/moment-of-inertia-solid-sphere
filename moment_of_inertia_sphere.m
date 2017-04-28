@@ -8,7 +8,7 @@ M = 1; % Mass
 R = 1; % Radius
 C = [0;0;0]; % Center
 
-% Divided into N smaller cubes.
+% Divided into N smaller cubes
 N = 0;
 
 % Dimension of the smaller cube
@@ -53,40 +53,29 @@ for i = 1:length(inside_pts)
 end
 
 fprintf('A solid sphere\n');
-fprintf('Radius = %d\nCenter location = [%d %d %d]\nMass = %d.\n\n', ...
+fprintf('Radius = %d\nCenter location = [%d %d %d]\nMass = %d\n\n', ...
         R, C(1), C(2), C(3), M);
-fprintf('Divided into %d small cubes.\n', N);
-fprintf('Calculated volume = %d.\n', V);
+fprintf('Divided into %d small cubes\n', N);
+fprintf('Calculated volume = %d\n', V);
 fprintf('Calculated moment of inertia:\n');
 fprintf('Ixx=%d\nIyy=%d\nIzz=%d\nIxy=%d\nIxz=%d\nIyz=%d\n', ...
         Ixx, Iyy, Izz, Ixy, Ixz, Iyz);
 
 
 %%
-% Drawing the spheres
-[x, y, z] = sphere(128);
-x = x.*R + C(1);
-y = y.*R + C(2);
-z = z.*R + C(3);
-
-h = surfl(x, y, z); 
-hold on;
-
-% Drawing the smaller cubes, this can take forever if delta is very small!
+% Drawing the smaller cubes, this can take forever if delta is very small!!
 x = [0 1 1 0 0 0; 1 1 0 0 1 1;1 1 0 0 1 1; 0 1 1 0 0 0] * delta;
 y = [0 0 1 1 0 0; 0 1 1 0 0 0;0 1 1 0 1 1; 0 0 1 1 1 1] * delta;
 z = [0 0 0 0 0 1; 0 0 0 0 0 1;1 1 1 1 0 1; 1 1 1 1 0 1] * delta;
 for j = 1:length(inside_pts)
     for i = 1 : 6
         h = patch(x(:,i)+inside_pts(1,j), y(:,i)+inside_pts(2,j), ...
-                  z(:,i)+inside_pts(3,j), 'b');
-        set(h,'edgecolor','w')
+                  z(:,i)+inside_pts(3,j),'b');
     end
 end
 
-material shiny;
-alpha(0.5);
-alphamap('rampdown');
-shading interp
+view([1 1 1]);
 axis equal;
-
+xlabel('x')
+xlabel('y')
+xlabel('z')
