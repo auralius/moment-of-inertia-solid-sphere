@@ -47,9 +47,9 @@ for i = 1:length(inside_pts)
     Ixx = Ixx + m*((y-C(2))^2 + (z-C(3))^2);
     Iyy = Iyy + m*((x-C(1))^2 + (z-C(3))^2);
     Izz = Izz + m*((x-C(1))^2 + (y-C(2))^2);
-    Ixy = Ixy + m*(x-C(1)) * (y-C(2));
-    Ixz = Ixz + m*(x-C(1)) * (z-C(3));
-    Iyz = Iyz + m*(y-C(2)) * (z-C(3));
+    Ixy = Ixy - m*(x-C(1)) * (y-C(2));
+    Ixz = Ixz - m*(x-C(1)) * (z-C(3));
+    Iyz = Iyz - m*(y-C(2)) * (z-C(3));
 end
 
 fprintf('A solid sphere\n');
